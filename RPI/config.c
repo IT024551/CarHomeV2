@@ -90,6 +90,10 @@ if (PORT != NULL)
 
 	cfg->username=NULL;
 	cfg->password=NULL;
+
+	//Lorenzo
+	cfg->deviceid=NULL;
+
 	bzero(cfg->mac, sizeof(cfg->mac));
 
 	cfgfilename=malloc(strlen(cfg->myname)+16);
@@ -141,6 +145,11 @@ if (PORT != NULL)
 			else CFG(typeid)
 			else CFG(host)
 			else CFG(btmac)
+
+
+			//Lorenzo
+			else CFG(deviceid)
+
 			else if (strcmp(key, "mac")==0) strncpy(cfg->mac, val, sizeof cfg->mac-1);
 			else if (strcmp(key, "port")==0) cfg->port=atoi(val);
 			else if (strcmp(key, "sleep")==0)cfg->sleep=atoi(val);
@@ -150,6 +159,10 @@ if (PORT != NULL)
 		    }
 		    tprintf("got option '%s' with arg %s\n", key, val);
 		}
+
+		// Lorenzo
+		strcpy(cfg->mac, cfg->deviceid);
+
 		if (cfg->mac[0] == '\0') getMac(cfg->mac, sizeof cfg->mac);
 		l=strlen(IDFMT)+strlen(cfg->typeid)+strlen(cfg->organisation)+strlen(cfg->mac)+1;
 		cfg->deviceid=malloc(l);
