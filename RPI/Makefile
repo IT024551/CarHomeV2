@@ -1,4 +1,4 @@
-LDFLAGS=-lmosquitto -liw -lbluetooth
+LDFLAGS=-lmosquitto -lbluetooth
 CFLAGS=-g -O0
 
 .PHONY: all install uninstall clean
